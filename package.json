@@ -11,6 +11,7 @@
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start:build": "npm run build && web-dev-server --root-dir dist --app-index index.html --open --compatibility none",
     "start": "web-dev-server --app-index index.html --host 0.0.0.0 --node-resolve --open --watch --port 8001",
+    "deploy": "API_URL=\"https://ge.nesg.es\"; npm run build",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
