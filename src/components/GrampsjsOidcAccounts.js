@@ -9,7 +9,7 @@ import '@material/web/textfield/filled-text-field'
 
 import {sharedStyles} from '../SharedStyles.js'
 import {GrampsjsAppStateMixin} from '../mixins/GrampsjsAppStateMixin.js'
-import {__APIHOST__, apiGetOIDCConfig} from '../api.js'
+import {getApiHost, apiGetOIDCConfig} from '../api.js'
 import {OIDC_LINK_RESULT_KEY, OIDC_RETURN_PATH_KEY} from '../oidc.js'
 import {fireEvent} from '../util.js'
 import './GrampsjsRelogin.js'
@@ -349,7 +349,7 @@ export class GrampsjsOidcAccounts extends GrampsjsAppStateMixin(LitElement) {
           provider: providerId,
           link: result.data.ticket,
         })
-        window.location.href = `${__APIHOST__}/api/oidc/login/?${query}`
+        window.location.href = `${getApiHost()}/api/oidc/login/?${query}`
       },
       {link: providerId}
     )

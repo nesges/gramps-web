@@ -6,7 +6,7 @@ import '@material/web/textfield/outlined-text-field.js'
 import {mdiCheckCircle} from '@mdi/js'
 import {sharedStyles} from '../SharedStyles.js'
 import {
-  __APIHOST__,
+  getApiHost,
   apiGetTokens,
   createFirstTree,
   getTreeFromToken,
@@ -280,7 +280,7 @@ class GrampsjsFirstRun extends GrampsjsAppStateMixin(LitElement) {
     this.stateUser = STATE_PROGRESS
     try {
       const resp = await fetch(
-        `${__APIHOST__}/api/users/${username}/create_owner/`,
+        `${getApiHost()}/api/users/${username}/create_owner/`,
         {
           method: 'POST',
           headers: {

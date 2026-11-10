@@ -21,7 +21,7 @@ import {GrampsjsView} from './GrampsjsView.js'
 
 import {mdiCheck, mdiContentCopy} from '@mdi/js'
 import {
-  __APIHOST__,
+  getApiHost,
   ACCESS_TOKEN_EXPIRY_MS,
   apiGetOIDCConfig,
   storeAuthToken,
@@ -449,7 +449,7 @@ export class GrampsjsViewSettingsUser extends GrampsjsView {
           ${this._('_Copy')}
         </md-outlined-button>
         <md-outlined-button
-          href="${__APIHOST__}/api/swagger-ui"
+          href="${getApiHost()}/api/swagger-ui"
           target="_blank"
           rel="noopener noreferrer"
         >

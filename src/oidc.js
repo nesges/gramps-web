@@ -1,4 +1,4 @@
-import {__APIHOST__, ACCESS_TOKEN_EXPIRY_MS} from './api.js'
+import {getApiHost, ACCESS_TOKEN_EXPIRY_MS} from './api.js'
 
 function storeTokens(data) {
   const expiresAt = Date.now() + ACCESS_TOKEN_EXPIRY_MS
@@ -26,7 +26,7 @@ export async function handleOIDCCallback(errorCallback) {
     }
 
     const resp = await fetch(
-      `${__APIHOST__}/api/oidc/callback/?code=${code}&state=${
+      `${getApiHost()}/api/oidc/callback/?code=${code}&state=${
         state || ''
       }&provider=${provider || ''}`,
       {
@@ -120,7 +120,7 @@ export async function handleOIDCComplete(errorCallback, appState) {
     }
 
     const resp = code
-      ? await fetch(`${__APIHOST__}/api/oidc/tokens/`, {
+      ? await fetch(`${getApiHost()}/api/oidc/tokens/`, {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -129,7 +129,7 @@ export async function handleOIDCComplete(errorCallback, appState) {
           body: JSON.stringify({code}),
         })
       : // Older API versions return the tokens from cookies, which this GET clears.
-        await fetch(`${__APIHOST__}/api/oidc/tokens/`, {
+        await fetch(`${getApiHost()}/api/oidc/tokens/`, {
           method: 'GET',
           credentials: 'include',
           headers: {

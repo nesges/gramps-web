@@ -25,6 +25,8 @@ import {
   mdiBell,
   mdiBellBadge,
   mdiTimelineOutline,
+  mdiRotate3d,
+  mdiChartGantt,
 } from '@mdi/js'
 import {sharedStyles} from '../SharedStyles.js'
 import {GrampsjsAppStateMixin} from '../mixins/GrampsjsAppStateMixin.js'
@@ -145,6 +147,22 @@ class GrampsjsAppBar extends GrampsjsAppStateMixin(LitElement) {
       </md-list-item>
       <md-list-item type="link" href="/tree" ?selected="${p === 'tree'}">
         ${this._icon(mdiFamilyTree, p === 'tree')} ${this._('Family Tree')}
+      </md-list-item>
+      <md-list-item
+        type="link"
+        href="https://ge.nesg.es/3d/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ${this._icon(mdiRotate3d, false)} ${this._('3D Family Tree')}
+      </md-list-item>
+      <md-list-item
+        type="link"
+        href="https://ge.nesg.es/3d/?view=timeline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ${this._icon(mdiChartGantt, false)} ${this._('Zeitstrahl')}
       </md-list-item>
       <md-list-item
         type="link"

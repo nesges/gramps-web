@@ -2,7 +2,12 @@ import {jwtDecode} from 'jwt-decode'
 
 import {fireEvent, normalizeRect} from './util.js'
 
-export const __APIHOST__ = 'http://localhost:5555'
+export function getApiHost() {
+  return (
+    (typeof window !== 'undefined' && window.grampsjsConfig?.apiUrl) ||
+    'http://localhost:5555'
+  )
+}
 
 // Access token expiration time (15 minutes in milliseconds)
 export const ACCESS_TOKEN_EXPIRY_MS = 15 * 60 * 1000
@@ -520,7 +525,7 @@ export function cleanOldDrafts() {
 export async function apiResetPassword(username) {
   try {
     const resp = await fetch(
-      `${__APIHOST__}/api/users/${username}/password/reset/trigger/`,
+      `${getApiHost()}/api/users/${username}/password/reset/trigger/`,
       {
         method: 'POST',
         headers: {
@@ -555,7 +560,7 @@ export async function apiResetPassword(username) {
 
 export async function apiGetOIDCConfig() {
   try {
-    const resp = await fetch(`${__APIHOST__}/api/oidc/config/`, {
+    const resp = await fetch(`${getApiHost()}/api/oidc/config/`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -583,7 +588,7 @@ export async function apiOIDCLogin(providerId) {
     if (!providerId) {
       throw new Error('Provider ID is required')
     }
-    window.location.href = `${__APIHOST__}/api/oidc/login/?provider=${encodeURIComponent(
+    window.location.href = `${getApiHost()}/api/oidc/login/?provider=${encodeURIComponent(
       providerId
     )}`
     return {success: true}
@@ -609,7 +614,7 @@ export async function apiGetOIDCLogoutUrl(
       params.append('post_logout_redirect_uri', postLogoutRedirectUri)
     }
     const resp = await fetch(
-      `${__APIHOST__}/api/oidc/logout/?${params.toString()}`,
+      `${getApiHost()}/api/oidc/logout/?${params.toString()}`,
       {
         method: 'GET',
         headers: {
@@ -644,13 +649,16 @@ export async function apiRegisterUser(
   try {
     let payload = {password, email, full_name: fullname}
     payload = tree ? {...payload, tree} : payload
-    const resp = await fetch(`${__APIHOST__}/api/users/${username}/register/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    })
+    const resp = await fetch(
+      `${getApiHost()}/api/users/${username}/register/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      }
+    )
     let resJson
     try {
       resJson = await resp.json()
@@ -673,7 +681,7 @@ export async function apiRegisterUser(
 
 export async function apiGetTokens(username, password) {
   try {
-    const resp = await fetch(`${__APIHOST__}/api/token/`, {
+    const resp = await fetch(`${getApiHost()}/api/token/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -736,17 +744,17 @@ export async function createFirstTree(appState, name) {
 export function getExporterUrl(id, options) {
   const jwt = localStorage.getItem('access_token')
   const queryParam = new URLSearchParams(options).toString()
-  return `${__APIHOST__}/api/exporters/${id}/file?jwt=${jwt}&${queryParam}`
+  return `${getApiHost()}/api/exporters/${id}/file?jwt=${jwt}&${queryParam}`
 }
 
 export function getExporterDownloadUrl(url) {
   const jwt = localStorage.getItem('access_token')
-  return `${__APIHOST__}${url}?jwt=${jwt}`
+  return `${getApiHost()}${url}?jwt=${jwt}`
 }
 
 export function getTileUrl(handle, checksum = null) {
   const jwt = localStorage.getItem('access_token')
-  const base = `${__APIHOST__}/api/media/${handle}/tile/{z}/{x}/{y}`
+  const base = `${getApiHost()}/api/media/${handle}/tile/{z}/{x}/{y}`
   if (jwt === null) {
     return checksum ? `${base}?checksum=${checksum}` : base
   }
@@ -756,10 +764,10 @@ export function getTileUrl(handle, checksum = null) {
 export function getMediaUrl(handle, download = false) {
   const jwt = localStorage.getItem('access_token')
   if (jwt === null) {
-    const url = `${__APIHOST__}/api/media/${handle}/file`
+    const url = `${getApiHost()}/api/media/${handle}/file`
     return download ? `${url}?download=1` : url
   }
-  const url = `${__APIHOST__}/api/media/${handle}/file?jwt=${jwt}`
+  const url = `${getApiHost()}/api/media/${handle}/file?jwt=${jwt}`
   return download ? `${url}&download=1` : url
 }
 
@@ -790,9 +798,9 @@ export function getMediaUrlCropped(handle, rect) {
   const jwt = localStorage.getItem('access_token')
   const [x1, y1, x2, y2] = normalizedRect
   if (jwt === null) {
-    return `${__APIHOST__}/api/media/${handle}/cropped/${x1}/${y1}/${x2}/${y2}`
+    return `${getApiHost()}/api/media/${handle}/cropped/${x1}/${y1}/${x2}/${y2}`
   }
-  return `${__APIHOST__}/api/media/${handle}/cropped/${x1}/${y1}/${x2}/${y2}?jwt=${jwt}`
+  return `${getApiHost()}/api/media/${handle}/cropped/${x1}/${y1}/${x2}/${y2}?jwt=${jwt}`
 }
 
 function _checksumParam(checksum) {
@@ -803,9 +811,9 @@ export function getThumbnailUrl(handle, size, square = false, checksum = null) {
   const jwt = localStorage.getItem('access_token')
   const cs = _checksumParam(checksum)
   if (jwt === null) {
-    return `${__APIHOST__}/api/media/${handle}/thumbnail/${size}?square=${square}${cs}`
+    return `${getApiHost()}/api/media/${handle}/thumbnail/${size}?square=${square}${cs}`
   }
-  return `${__APIHOST__}/api/media/${handle}/thumbnail/${size}?jwt=${jwt}&square=${square}${cs}`
+  return `${getApiHost()}/api/media/${handle}/thumbnail/${size}?jwt=${jwt}&square=${square}${cs}`
 }
 
 export function getThumbnailUrlCropped(
@@ -823,9 +831,9 @@ export function getThumbnailUrlCropped(
   const cs = _checksumParam(checksum)
   const [x1, y1, x2, y2] = normalizedRect
   if (jwt === null) {
-    return `${__APIHOST__}/api/media/${handle}/cropped/${x1}/${y1}/${x2}/${y2}/thumbnail/${size}?square=${square}${cs}`
+    return `${getApiHost()}/api/media/${handle}/cropped/${x1}/${y1}/${x2}/${y2}/thumbnail/${size}?square=${square}${cs}`
   }
-  return `${__APIHOST__}/api/media/${handle}/cropped/${x1}/${y1}/${x2}/${y2}/thumbnail/${size}?jwt=${jwt}&square=${square}${cs}`
+  return `${getApiHost()}/api/media/${handle}/cropped/${x1}/${y1}/${x2}/${y2}/thumbnail/${size}?jwt=${jwt}&square=${square}${cs}`
 }
 
 export async function queryNominatim(
@@ -1025,7 +1033,7 @@ export class Auth {
     if (this.refreshToken === null) {
       throw new Error('No refresh token found')
     }
-    const resp = await fetch(`${__APIHOST__}/api/token/refresh/`, {
+    const resp = await fetch(`${getApiHost()}/api/token/refresh/`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${this.refreshToken}`,
@@ -1066,7 +1074,7 @@ export async function apiGet(auth, endpoint) {
       // Auth failures fall through to the backend; a tree mismatch must not.
       if (error instanceof TreeMismatchError) throw error
     }
-    const resp = await fetch(`${__APIHOST__}${endpoint}`, {
+    const resp = await fetch(`${getApiHost()}${endpoint}`, {
       method: 'GET',
       headers,
     })
@@ -1131,7 +1139,7 @@ export async function apiPutPostDelete(
     if (isJson) {
       headers['Content-Type'] = 'application/json'
     }
-    const resp = await fetch(`${__APIHOST__}${endpoint}`, {
+    const resp = await fetch(`${getApiHost()}${endpoint}`, {
       method,
       headers,
       body: isJson ? JSON.stringify(payload) : payload,
