@@ -162,7 +162,7 @@ class GrampsjsAppBar extends GrampsjsAppStateMixin(LitElement) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        ${this._icon(mdiChartGantt, false)} ${this._('Zeitstrahl')}
+        ${this._icon(mdiChartGantt, false)} ${this._('Gantt Timeline')}
       </md-list-item>
       <md-list-item
         type="link"

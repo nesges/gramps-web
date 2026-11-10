@@ -1,6 +1,8 @@
 {
     "A new version of the app is available.": "Eine neue Version der App ist verfügbar.",
     "Blog": "Blog",
+    "3D Family Tree": "3D Stammbaum",
+    "Gantt Timeline": "Gantt-Zeitstrahl",
     "Change E-mail": "E-Mail ändern",
     "Change password": "Kennwort ändern",
     "Discard": "Verwerfen",
@@ -24,7 +26,8 @@
     "Global": "Global",
     "Edit coordinates": "Koordinaten bearbeiten",
     "Search %s": "Suche %s",
-    "Latest Blog Post": "Neuester Blogeintrag",
+    "Latest Blog Posts": "Neueste Blogeinträge",
+    "More on the blog": "mehr im Blog",
     "Align the image": "Das Bild ausrichten",
     "Select a point on the map": "Wähle einen Punkt auf der Karte",
     "Select an existing citation": "Wähle eine bestehende Quellenangabe",

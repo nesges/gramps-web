@@ -25,17 +25,18 @@ export class GrampsjsViewRecentBlogPosts extends GrampsjsConnectedComponent {
   renderContent() {
     if (!this._data?.data?.length) {
       return html`
-        <h3>${this._('Latest Blog Post')}</h3>
+        <h3>${this._('Latest Blog Posts')}</h3>
         <p>${this._('None')}.</p>
+        <a href="/blog">${this._('More on the blog')}</a>
       `
     }
     return html`
-      <h3>${this._('Latest Blog Post')}</h3>
+      <h3>${this._('Latest Blog Posts')}</h3>
       <grampsjs-search-result-list
         large
         selectable
         @search-result:clicked="${this._handleClick}"
-        .data="${this._data.data.slice(0, 1).map(obj => ({
+        .data="${this._data.data.slice(0, 5).map(obj => ({
           object: obj,
           object_type: 'source',
         }))}"
@@ -44,19 +45,21 @@ export class GrampsjsViewRecentBlogPosts extends GrampsjsConnectedComponent {
         noSep
       >
       </grampsjs-search-result-list>
+      <a href="/blog">${this._('More on the blog')}</a>
     `
   }
 
   renderLoading() {
     return html`
-      <h3>${this._('Latest Blog Post')}</h3>
+      <h3>${this._('Latest Blog Posts')}</h3>
       <grampsjs-search-result-list
         .data="${this._data.data}"
         .appState="${this.appState}"
         loading
-        numberLoading="1"
+        numberLoading="5"
         noSep
       ></grampsjs-search-result-list>
+      <a href="/blog">${this._('More on the blog')}</a>
     `
   }
 
@@ -78,7 +81,7 @@ export class GrampsjsViewRecentBlogPosts extends GrampsjsConnectedComponent {
     }
     return `/api/sources/?rules=${encodeURIComponent(
       JSON.stringify(rules)
-    )}&pagesize=1&sort=-change&locale=${
+    )}&pagesize=5&sort=-change&locale=${
       this.appState.i18n.lang || 'en'
     }&profile=all&extend=all`
   }

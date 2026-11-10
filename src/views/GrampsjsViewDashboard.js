@@ -264,11 +264,11 @@ export class GrampsjsViewDashboard extends GrampsjsView {
           ? ''
           : html`
               <div>
-                <grampsjs-view-recently-changed
-                  id="recently-changed"
+                <grampsjs-view-recent-blog-posts
+                  id="recent-blog"
                   .appState="${this.appState}"
                 >
-                </grampsjs-view-recently-changed>
+                </grampsjs-view-recent-blog-posts>
               </div>
             `}
       </div>
@@ -278,11 +278,11 @@ export class GrampsjsViewDashboard extends GrampsjsView {
           ? ''
           : html`
               <div>
-                <grampsjs-view-recent-blog-posts
-                  id="recent-blog"
+                <grampsjs-view-recently-changed
+                  id="recently-changed"
                   .appState="${this.appState}"
                 >
-                </grampsjs-view-recent-blog-posts>
+                </grampsjs-view-recently-changed>
               </div>
               <div>
                 <grampsjs-statistics
