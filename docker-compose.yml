@@ -1,0 +1,47 @@
+services:
+  grampsweb: &grampsweb
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VERSION=${GRAMPSWEB_VERSION}
+    restart: always
+    ports:
+      - "3004:5000"
+    env_file:
+      - ../.env
+    depends_on:
+      - grampsweb_redis
+    volumes:
+      - ./data/users:/app/users
+      - ./data/index:/app/indexdir
+      - ./data/thumb_cache:/app/thumbnail_cache
+      - ./data/cache:/app/cache
+      - ./data/secret:/app/secret
+      - ./data/db:/root/.gramps/grampsdb
+      - ./data/media:/app/media
+      - ./data/tmp:/tmp
+
+  grampsweb_celery:
+    <<: *grampsweb
+    ports: []
+    container_name: grampsweb_celery
+    depends_on:
+      - grampsweb
+      - grampsweb_redis
+    command: celery -A gramps_webapi.celery worker --loglevel=INFO --concurrency=2
+
+  grampsweb_redis:
+    image: docker.io/valkey/valkey:8-alpine
+    container_name: grampsweb_redis
+    restart: always
+
+volumes:
+  gramps_users:
+  gramps_index:
+  gramps_thumb_cache:
+  gramps_cache:
+  gramps_secret:
+  gramps_db:
+  gramps_media:
+  gramps_tmp:

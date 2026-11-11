@@ -23,3 +23,7 @@
 /_site/
 /dist/
 /out-tsc/
+
+# prod
+/data
+/export
