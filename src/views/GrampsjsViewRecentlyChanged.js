@@ -13,12 +13,13 @@ export class GrampsjsViewRecentlyChanged extends GrampsjsConnectedComponent {
             <grampsjs-search-result-list
               linked
               large
-              .data="${this._data.data}"
+              .data="${this._data.data.slice(0, 5)}"
               .appState="${this.appState}"
               showTags
               date
               noSep
             ></grampsjs-search-result-list>
+            <a href="/people">${this._('More in the lists')}</a>
           `}`
   }
 
@@ -45,7 +46,7 @@ export class GrampsjsViewRecentlyChanged extends GrampsjsConnectedComponent {
       '*'
     )}&change=${encodeURIComponent(`>${ts}`)}&locale=${
       this.appState.i18n.lang || 'en'
-    }&type=${primaryObjectTypes.join(',')}&profile=all&page=1&pagesize=8`
+    }&type=${primaryObjectTypes.join(',')}&profile=all&page=1&pagesize=5`
   }
 }
 
