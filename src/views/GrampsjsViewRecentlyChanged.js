@@ -29,9 +29,10 @@ export class GrampsjsViewRecentlyChanged extends GrampsjsConnectedComponent {
         .data="${[]}"
         .appState="${this.appState}"
         loading
-        numberLoading="8"
+        numberLoading="5"
         noSep
       ></grampsjs-search-result-list>
+      <a href="/people">${this._('More in the lists')}</a>
     `
   }
 

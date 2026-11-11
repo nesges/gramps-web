@@ -4,7 +4,7 @@ import {unsafeHTML} from 'lit/directives/unsafe-html.js'
 import '@material/web/button/text-button'
 
 import {diff} from 'jsondiffpatch'
-import * as htmlFormatter from 'jsondiffpatch/lib/formatters/html.js'
+import * as htmlFormatter from '../../node_modules/jsondiffpatch/lib/formatters/html.js'
 
 import {sharedStyles} from '../SharedStyles.js'
 

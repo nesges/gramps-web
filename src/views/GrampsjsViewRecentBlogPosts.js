@@ -27,7 +27,6 @@ export class GrampsjsViewRecentBlogPosts extends GrampsjsConnectedComponent {
       return html`
         <h3>${this._('Latest Blog Posts')}</h3>
         <p>${this._('None')}.</p>
-        <a href="/blog">${this._('More on the blog')}</a>
       `
     }
     return html`

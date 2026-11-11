@@ -27,6 +27,7 @@ import {
   mdiTimelineOutline,
   mdiRotate3d,
   mdiChartGantt,
+  mdiMovieOpen,
 } from '@mdi/js'
 import {sharedStyles} from '../SharedStyles.js'
 import {GrampsjsAppStateMixin} from '../mixins/GrampsjsAppStateMixin.js'
@@ -144,6 +145,14 @@ class GrampsjsAppBar extends GrampsjsAppStateMixin(LitElement) {
       </md-list-item>
       <md-list-item type="link" href="/blog" ?selected="${p === 'blog'}">
         ${this._icon(mdiRss, p === 'blog')} ${this._('Blog')}
+      </md-list-item>
+      <md-list-item
+        type="link"
+        href="https://ge.nesg.es/api/media/1050ed8039ff747dc8037e10c8c9/file?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc5NDMxNjQ3MCwianRpIjoiZjk5YTQyZDQtMGNmOS00NzYyLTliZmQtMmExYjc5ZjAzMjZkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjQ5Yzk0NWMyLTMyZDItNGE1Ny05OGI2LTBmNTA5YzMyYzFhNSIsIm5iZiI6MTc5NDMxNjQ3MCwiY3NyZiI6ImRlNTEzNTc4LWM0NzQtNGQ4OC04MTg0LWQ2OWUxMTg1MTE2NyIsImV4cCI6MTc5NDMxNzM3MCwicGVybWlzc2lvbnMiOlsiVmlld090aGVyVHJlZSIsIkVkaXRPdGhlclRyZWVVc2VyUm9sZSIsIkRpc2FibGVUcmVlIiwiUmVwYWlyVHJlZSIsIkVkaXRPdGhlclRyZWUiLCJFZGl0T3duVXNlciIsIkVkaXRVc2VyVHJlZSIsIlRyaWdnZXJSZWluZGV4IiwiQWRkT3RoZXJUcmVlVXNlciIsIkFkZFVzZXIiLCJFZGl0VXNlclJvbGUiLCJJbXBvcnRGaWxlIiwiVmlld1NldHRpbmdzIiwiTWFrZUFkbWluIiwiRWRpdE5hbWVHcm91cCIsIkVkaXRUcmVlTWluUm9sZUFJIiwiVXBncmFkZVNjaGVtYSIsIkVkaXRPdGhlclRyZWVVc2VyIiwiRGVsZXRlVXNlciIsIkJhdGNoRGVsZXRlT2JqZWN0cyIsIkVkaXRPdGhlclVzZXIiLCJWaWV3T3RoZXJUcmVlVXNlciIsIkFkZE9iamVjdCIsIkVkaXRTZXR0aW5ncyIsIlZpZXdPdGhlclVzZXIiLCJFZGl0Q3VzdG9tRmlsdGVyIiwiRWRpdE9iamVjdCIsIkVkaXRUcmVlIiwiRGVsZXRlT2JqZWN0IiwiVmlld1ByaXZhdGUiLCJEZWxldGVPdGhlclRyZWVVc2VyIiwiRWRpdFRyZWVRdW90YSIsIk1hbmFnZUJhY2t1cHMiLCJBZGRUcmVlIl0sInRyZWUiOiIwY2U5OTk1My1iY2U1LTRkN2QtOTI2NS0yYzJkM2FjNjQxMGIifQ.Potk9vbIOV3pJRfVTREee4boJ5cFscuCrMyZoe8zJyM"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ${this._icon(mdiMovieOpen, false)} ${this._('The Journey')}
       </md-list-item>
       <md-list-item type="link" href="/tree" ?selected="${p === 'tree'}">
         ${this._icon(mdiFamilyTree, p === 'tree')} ${this._('Family Tree')}

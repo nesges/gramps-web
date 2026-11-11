@@ -37,7 +37,14 @@ export class GrampsjsHomePerson extends GrampsjsAppStateMixin(LitElement) {
 
   render() {
     return html`
-      <h3>${this._('Home Person')}</h3>
+      <h3>
+        ${this._('Home Person')}
+        <span
+          style="color:var(--grampsjs-body-font-color-30); font-style:italic; font-size:small"
+        >
+          ... Wer bist du?</span
+        >
+      </h3>
 
       ${this.homePersonGrampsId && !this.homePersonMissing
         ? html`
