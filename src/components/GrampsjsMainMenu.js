@@ -27,6 +27,7 @@ import {
   mdiTimelineOutline,
   mdiRotate3d,
   mdiChartGantt,
+  mdiBook,
 } from '@mdi/js'
 import {sharedStyles} from '../SharedStyles.js'
 import {GrampsjsAppStateMixin} from '../mixins/GrampsjsAppStateMixin.js'
@@ -145,12 +146,22 @@ class GrampsjsAppBar extends GrampsjsAppStateMixin(LitElement) {
       <md-list-item type="link" href="/blog" ?selected="${p === 'blog'}">
         ${this._icon(mdiRss, p === 'blog')} ${this._('Blog')}
       </md-list-item>
+
+      <md-list-item
+        type="link"
+        href="/chronicle/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ${this._icon(mdiBook, false)} ${this._('Chronik')}
+      </md-list-item>
+
       <md-list-item type="link" href="/tree" ?selected="${p === 'tree'}">
         ${this._icon(mdiFamilyTree, p === 'tree')} ${this._('Family Tree')}
       </md-list-item>
       <md-list-item
         type="link"
-        href="https://ge.nesg.es/3d/"
+        href="/3d/"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -158,7 +169,7 @@ class GrampsjsAppBar extends GrampsjsAppStateMixin(LitElement) {
       </md-list-item>
       <md-list-item
         type="link"
-        href="https://ge.nesg.es/3d/?view=timeline"
+        href="/3d/?view=timeline"
         target="_blank"
         rel="noopener noreferrer"
       >

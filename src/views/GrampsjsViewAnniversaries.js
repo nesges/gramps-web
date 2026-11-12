@@ -45,7 +45,13 @@ export class GrampsjsViewAnniversaries extends GrampsjsConnectedComponent {
   }
 
   renderLoading() {
-    return html`<h3>${this._('Anniversaries')}</h3>
+    return html`<h3>
+        ${this._('Anniversaries')}
+        <span
+          style="color:var(--grampsjs-body-font-color-30); font-style:italic; font-size:small"
+          >... Heute vor langer Zeit</span
+        >
+      </h3>
       <md-list>
         ${Array(2).fill(
           html`

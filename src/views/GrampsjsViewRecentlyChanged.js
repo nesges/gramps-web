@@ -19,7 +19,7 @@ export class GrampsjsViewRecentlyChanged extends GrampsjsConnectedComponent {
               date
               noSep
             ></grampsjs-search-result-list>
-            <a href="/people">${this._('More in the lists')}</a>
+            <small><a href="/people">${this._('More in the lists')}</a></small>
           `}`
   }
 
@@ -33,7 +33,7 @@ export class GrampsjsViewRecentlyChanged extends GrampsjsConnectedComponent {
         numberLoading="5"
         noSep
       ></grampsjs-search-result-list>
-      <a href="/people">${this._('More in the lists')}</a>
+      <small><a href="/people">${this._('More in the lists')}</a></small>
     `
   }
 

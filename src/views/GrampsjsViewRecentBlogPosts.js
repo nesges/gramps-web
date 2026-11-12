@@ -44,7 +44,7 @@ export class GrampsjsViewRecentBlogPosts extends GrampsjsConnectedComponent {
         noSep
       >
       </grampsjs-search-result-list>
-      <a href="/blog">${this._('More on the blog')}</a>
+      <small><a href="/blog">${this._('More on the blog')}</a></small>
     `
   }
 
@@ -58,7 +58,7 @@ export class GrampsjsViewRecentBlogPosts extends GrampsjsConnectedComponent {
         numberLoading="5"
         noSep
       ></grampsjs-search-result-list>
-      <a href="/blog">${this._('More on the blog')}</a>
+      <small><a href="/blog">${this._('More on the blog')}</a></small>
     `
   }
 
